@@ -1,0 +1,5 @@
+test/
+.idea
+.vscode
+*.test
+*.out
