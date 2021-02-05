@@ -13,6 +13,7 @@ const (
 	CmdNoticeMsg             CmdType = "NOTICE_MSG"
 	CmdRealTimeMessageUpdate CmdType = "ROOM_REAL_TIME_MESSAGE_UPDATE"
 	CmdOnlineChange          CmdType = "ONLINE_CHANGE"
+	CmdInteractWord          CmdType = "INTERACT_WORD"
 )
 
 type MsgHandler interface {

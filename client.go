@@ -16,10 +16,11 @@ import (
 
 type Client struct {
 	SimpleRoomInfo
-	connected bool
-	Conn      *websocket.Conn
-	msgChan   chan []byte
-	handlers  map[CmdType]HandleChain
+	connected   bool
+	Conn        *websocket.Conn
+	msgChan     chan []byte
+	handlers    map[CmdType]HandleChain
+	logUnRegMsg bool
 }
 
 func NewClient(roomID int) *Client {
@@ -176,6 +177,10 @@ func (c *Client) RunCmdHandlers(ctx *Context) {
 		if handlers != nil {
 			ctx.handlers = handlers
 			ctx.Next()
+		}
+	} else {
+		if c.logUnRegMsg {
+			log.Printf("[%s]%v", ctx.Cmd, ctx.Msg)
 		}
 	}
 }
